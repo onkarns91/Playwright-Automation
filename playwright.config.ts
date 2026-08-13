@@ -15,7 +15,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 
 const config=({    //create config(var)...1 //approach 2: export default defineConfig
-  testDir: './tests',
+  testDir: './tests/',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
