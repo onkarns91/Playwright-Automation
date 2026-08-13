@@ -24,14 +24,14 @@ if(age>18)
             } */
 //Ex : if num id dividible by 2, it is even ;otherwise it is odd
 
-let num:number=32
-if (num%2==0)
+let num1:number=32
+if (num1%2==0)
 {
-    console.log(`${num} is Even Number`)
+    console.log(`${num1} is Even Number`)
 }
 else
 {
-     console.log(`${num }is Odd Number`)
+     console.log(`${num1}is Odd Number`)
 }
 
 /* 3. Nested if else
