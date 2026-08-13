@@ -1,6 +1,6 @@
 const {test} = require('@playwright/test');
 
-test('browser context Playwright Test', async ({browser}:any)=>   //'test' annotation
+test('browser context Playwright Test', async ({browser})=>   //'test' annotation
     {
         const context=await browser.newContext()
         const page=await context.newPage()
@@ -10,6 +10,6 @@ test('browser context Playwright Test', async ({browser}:any)=>   //'test' annot
 await pauses the execution of that async function until the Promise is resolved or rejected,
 allowing asynchronous operations to be handled in a sequential-looking way.*/
 
-test('page playwright test',async({page}:any)=>{
+test('page playwright test',async({page})=>{
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 })
