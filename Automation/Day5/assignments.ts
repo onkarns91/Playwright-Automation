@@ -229,7 +229,7 @@ switch(num)
 
 
 //approach 2
-let num: number = 3;
+/* let num: number = 3;
 
 switch (true) {
     case (num >= 3 && num <= 5):
@@ -246,4 +246,4 @@ switch (true) {
         break;
     default:
         console.log('Invalid Input');
-}
+} */
