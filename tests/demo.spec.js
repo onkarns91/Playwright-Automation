@@ -19,7 +19,7 @@ allowing asynchronous operations to be handled in a sequential-looking way.*/
 }) ; */
 
 //TC_01 : enter incorrect username and verify validation >>
-test('browser context Playwright Test', async ({browser})=>   //'test' -annotation
+/* test('browser context Playwright Test', async ({browser})=>   //'test' -annotation
     {
         const context=await browser.newContext();
         const page=await context.newPage();
@@ -48,15 +48,42 @@ test('browser context Playwright Test', async ({browser})=>   //'test' -annotati
         console.log('first product name :', await iphn.first().textContent()); //.first() -to selects 1st product/web-element
         console.log('second product name :', await iphn.nth(1).textContent());  //.nth(1) -to selects specific product/web-element , here (1)= 2nd web-element.
 
+    }); */
 
 
+//TC_02 : select dropdown and radio button
+test('select dropdown and radio button', async({page})=>
+{
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    
+    const username=page.locator("#username"); 
+    const password=page.locator("#password");
+    const signin=page.locator("#signInBtn");
+    const userid="rahulshettyacademy";
+    const pwd="Learning@830$3mK2";
+    await username.fill(userid);
+    await password.fill(pwd);
+    // select dropdown
+    const dropdown=page.locator("select.form-control");  //create variable for dropdown locator
+    await dropdown.selectOption("consult");     //select value from dropdown
 
+    //select radio buttons ,checkbox and implement expect aasertions 
+    await page.locator(".customradio").last().click();   //select radio option
+    await page.locator("#okayBtn").click();
+     
+    console.log(await page.locator(".customradio").last().isChecked());   //isChecked - checking whether element checked or not ,gives boolean value.
+    await expect (page.locator(".customradio").last()).toBeChecked();  // toBeChecked - verify that element is checked , gives test result - Pass/Fail.
+    await page.locator("#terms").click();
+    await expect (page.locator("#terms")).toBeChecked();
+    await page.locator("#terms").uncheck();  // uncheck - to unselect checkbox
+    //using sync await with assertions 
+    expect(await page.locator("#terms").isChecked()).toBeFalsy();  // toBeFalsy - assertion that verifies a value is falsy in a boolean context.
 
+    // validating the attributes 
+    const locatorLink =page.locator("[href*='documents-request']");
+    await expect (locatorLink).toHaveAttribute("class","blinkingText");//toHaveAttribute is a Locator assertion method , verifies element has a specific attribute with an expected value.
+    
+    await signin.click();
+    //await page.pause();
 
-
-
-
-
-
-
-    });
+});    
