@@ -3,7 +3,9 @@ const {test , expect}=require("@playwright/test");
 
 
 //TC_01 login with valid credentials and get name of first product>>
-test('get name of first product', async ({page})=>{
+test('get name of first product', async ({browser})=>{
+    const context=await browser.newContext();
+    const page=await context.newPage();
    await page.goto("https://rahulshettyacademy.com/client");
     console.log('Page Title :',await page.title());
     const email="onkar11@test.com";//anshika@gmail.com
@@ -24,4 +26,27 @@ test('get name of first product', async ({page})=>{
     console.log('All Products Name :',await page.locator("div.card-body h5").allTextContents());
 
 
+//TC_02 select and add to cart one product>>
+    const product= page.locator(".card-body");
+    const productName="ZARA COAT 3";
+    const count=await product.count();
+    for (let i=0;i<count;++i)      
+    {
+       if(await product.nth(i).locator("b").textContent()===productName)
+       {
+        await product.nth(i).locator("text= Add To Cart").click();    
+        break;    
+       }
+    };
+    
+    const cart= page.locator('[routerlink="/dashboard/cart"]');   
+    await cart.click();
+    
+    
+    console.log('item number :',await page.locator(".infoWrap").locator(".itemNumber").textContent());
+    const cartitemname=await page.locator(".infoWrap h3").textContent();
+    if(cartitemname==="ZARA COAT 3")
+    {
+        console.log('cartitemname :',await cartitemname);
+    };
 });

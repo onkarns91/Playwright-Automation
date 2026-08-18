@@ -97,7 +97,7 @@ test('child window hndl', async ({browser})=>
 
     //create array - to click and open link in new window>>
     const [Newpage]=await Promise.all([               //when needs to run two Promises at a time(simultaneously).
-        context.waitForEvent('page'),                //waitForEvent - listen for any new page. types of 'await' - pending,rejected,fulfilled.
+        context.waitForEvent('page'),                //waitForEvent - listen for any new page. types of 'wait' - pending,rejected,fulfilled.
         documentLink.click(),                       //new page is open
     ])
  
@@ -112,5 +112,5 @@ test('child window hndl', async ({browser})=>
 
     //fill userid on parent window page
     await page.locator("#username").fill(mailId);
-     console.log('username entered :',await page.locator("#username").inputValue());
+     console.log('username entered :',await page.locator("#username").inputValue());  //inputvalue - to get input value in field 
 });    
