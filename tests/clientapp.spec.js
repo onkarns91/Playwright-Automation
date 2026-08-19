@@ -41,12 +41,31 @@ test('get name of first product', async ({browser})=>{
     
     const cart= page.locator('[routerlink="/dashboard/cart"]');   
     await cart.click();
+    await page.locator("div li").first().waitFor();
+    const bool=await page.locator("h3:has-text('ZARA COAT 3')").isVisible();    
+    //("h3:has-text('ZARA COAT 3')") ==syntax >> ("tagname:has-text('')") , :has-text >> called as 'sudo class'. //isVisible() >>Returns whether the element is visible. return boolean value.
+    expect (bool).toBeTruthy();  
     
-    
-    console.log('item number :',await page.locator(".infoWrap").locator(".itemNumber").textContent());
+    /* console.log('item number :',await page.locator(".infoWrap").locator(".itemNumber").textContent());
     const cartitemname=await page.locator(".infoWrap h3").textContent();
     if(cartitemname==="ZARA COAT 3")
     {
         console.log('cartitemname :',await cartitemname);
-    };
+    }; */
+
+
+await page.locator("text=Checkout").click();
+const cvvInput=page.locator("text=CVV Code ")
+await cvvInput.locator(".input.txt").fill("123");
+const cardName=page.locator("text=Name on Card ")
+await cardName.locator(".input.txt").fill("onkar sawant");
+const country= page.locator('div [placeholder*="Country"]');
+//pressSequentially("Enter") >> to press multiple keys in sequence.
+await country.pressSequentially("ind");
+await page.locator('section [type="button"]').first().waitFor();
+const alloptn=await page.locator('section [type="button"]').allTextContents();
+await alloptn.selectOption(" India");
+await page.locator("a:has-text('Place Order ')");
+
+
 });
