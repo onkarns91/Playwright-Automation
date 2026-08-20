@@ -17,9 +17,9 @@ await UserEmail.fill(email);
 await UserPass.fill(pass);
 await Loginbtn.click();
 
-// const ProductName=page.locator("div.card-body h5").first();
-// console.log('First Product Name :',await ProductName.textContent());    
-// await expect (ProductName).toContainText("ADIDAS");
+const ProductName=page.locator("div.card-body h5").first();
+console.log('First Product Name :',await ProductName.textContent());    
+await expect (ProductName).toContainText("ADIDAS");
 //TO GET ALL PRODUCTS NAMES  
 await page.locator("div.card-body h5").last().waitFor();  // waitfor - to waituntil specific locator to load.
 console.log('All Products Name :',await page.locator("div.card-body h5").allTextContents());
@@ -43,15 +43,11 @@ await page.locator("div li").first().waitFor();
 const bool=await page.locator("h3:has-text('ZARA COAT 3')").isVisible();    
 //("h3:has-text('ZARA COAT 3')") ==syntax >> ("tagname:has-text('')") , :has-text >> called as 'sudo class'. //isVisible() >>Returns whether the element is visible. return boolean value.
 expect (bool).toBeTruthy();  
-/* console.log('item number :',await page.locator(".infoWrap").locator(".itemNumber").textContent());
-const cartitemname=await page.locator(".infoWrap h3").textContent();
-if(cartitemname==="ZARA COAT 3")
-    {
-        console.log('cartitemname :',await cartitemname);
-    }; */
 await page.locator("text=Checkout").click();
-const cvvInput=
-page.locator("input.input.txt").nth(1);
+
+
+//TC_03 Enter payment details and Place oder>>
+const cvvInput=page.locator("input.input.txt").nth(1);
 await cvvInput.fill("123");
 const cardName=page.locator("input.input.txt").nth(2);
 await cardName.fill("onkar sawant");
@@ -72,8 +68,45 @@ for(let i=0;i<optncount;++i)
         break;
     }
 }
-//await page.pause();
-await page.locator(".action__submit").click();
+await expect  (page.locator("label[type='text']")).toHaveText(email);
+
+
+
+await page.locator("a.action__submit").click();
+await expect (page.locator("h1.hero-primary")).toContainText(" Thankyou for the order. ");
+console.log(await page.locator('h1.hero-primary').textContent());
+const odrId=await page.locator("tbody label").nth(1).textContent();
+console.log(odrId);
+
+
+
+const orderbtn=page.locator("li [routerlink*='myorders']");
+await orderbtn.click();
+
+
+const Allorders=page.locator("table.table");
+await Allorders.waitFor();
+const row=Allorders.locator("[scope='row']");
+const ordercount=await row.count();
+const expectedId = odrId.replace(/\|/g, "").trim();
+console.log("TR count:", await Allorders.locator("tr").count());
+
+console.log("Scope row count:", await Allorders.locator("[scope='row']").count());
+
+for(let i=0;i<ordercount;++i)
+{
+    const ID=(await row.nth(i).textContent())?.trim();
+    console.log("Webpage ID:", ID);
+    console.log("Expected ID:", expectedId);
+    if(ID===expectedId)
+    {   
+        console.log("MATCH FOUND! 🎯");
+        //await row.nth(i).locator("td button.btn-primary").click();
+        break;
+    }
+}
+//await expect (page.locator(".email-title")).toHaveText(" order summary ");
+await page.pause();
 
 
 
