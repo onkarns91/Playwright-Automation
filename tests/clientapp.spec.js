@@ -84,31 +84,26 @@ const orderbtn=page.locator("li [routerlink*='myorders']");
 await orderbtn.click();
 
 
-const Allorders=page.locator("table.table");
-await Allorders.waitFor();
-const row=Allorders.locator("[scope='row']");
-const ordercount=await row.count();
+const row=page.locator("tbody tr");
+await row.first().waitFor();
+const rowcount=await row.count();
 const expectedId = odrId.replace(/\|/g, "").trim();
-console.log("TR count:", await Allorders.locator("tr").count());
 
-console.log("Scope row count:", await Allorders.locator("[scope='row']").count());
 
-for(let i=0;i<ordercount;++i)
+
+for(let i=0;i<rowcount;++i)
 {
-    const ID=(await row.nth(i).textContent())?.trim();
-    console.log("Webpage ID:", ID);
-    console.log("Expected ID:", expectedId);
-    if(ID===expectedId)
-    {   
+    const id=await row.nth(i).locator("th").textContent();
+    if(id.includes(expectedId))
+    {
         console.log("MATCH FOUND! 🎯");
-        //await row.nth(i).locator("td button.btn-primary").click();
+        await row.nth(i).locator("td button.btn-primary").click();
         break;
     }
+    
 }
-//await expect (page.locator(".email-title")).toHaveText(" order summary ");
-await page.pause();
-
-
+ 
+await expect (page.locator("div .email-title")).toHaveText(" order summary ");
 
 
 });
