@@ -27,17 +27,23 @@ const config=({    //create config(var)...1 //approach 2: export default defineC
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
  /*  timeout: 40*1000, //await timeout added for test 
-  expect:{      //await timeout added for assertions 
+  expect:{      //await timeout added for expect assertions at global level
     timeout:40*1000
   }, */
+
+  
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     //trace: 'on-first-retry',
-    headless: !!process.env.CI //1..to it only runs headless inside GitHub Actions //2..to invoked browser keep false
+    headless: !!process.env.CI, //1..to it only runs headless inside GitHub Actions //2..to invoked browser keep false
+    
+    actionTimeout: 10*1000,  //set action timeout @ global level
+    navigationTimeout :10*1000,
   },
 
   /* Configure projects for major browsers */

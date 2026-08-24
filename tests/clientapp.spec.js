@@ -73,6 +73,8 @@ await expect  (page.locator("label[type='text']")).toHaveText(email);
 
 
 await page.locator("a.action__submit").click();
+
+//TC_04 goto 'Your Orders' scan page find orderID and view order summary >>
 await expect (page.locator("h1.hero-primary")).toContainText(" Thankyou for the order. ");
 console.log(await page.locator('h1.hero-primary').textContent());
 const odrId=await page.locator("tbody label").nth(1).textContent();
@@ -102,8 +104,20 @@ for(let i=0;i<rowcount;++i)
     }
     
 }
- 
+//TC_05 On order summary page verify orderdetails>>
 await expect (page.locator("div .email-title")).toHaveText(" order summary ");
 
+const orderdtls=await page.locator("div .col-text").textContent();
+await expect (odrId.includes(orderdtls)).toBeTruthy();
+const billid=await page.locator("div .text").nth(0);
+const billcountry=await page.locator("div .text").nth(1);
+const dilvid=await page.locator("div .text").nth(2);
+const dilvcountry=await page.locator("div .text").nth(3);
+
+await expect (billid).toHaveText(email);
+await expect(billcountry).toContainText("India");
+await expect (dilvid).toHaveText(email);
+await expect (dilvcountry).toContainText("India");
+await expect(page.locator("div .title")).toHaveText(" ZARA COAT 3 ");
 
 });
