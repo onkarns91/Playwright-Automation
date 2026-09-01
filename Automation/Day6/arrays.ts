@@ -5,7 +5,7 @@ var marks=Array(6);
 console.log(marks);
 marks=[10,20,230,40,60,60];//aprroach 2
 console.log('array :',marks)
-submarks=marks.slice(2,4);
+var submarks=marks.slice(2,4);
 console.log(marks[2]); //print 3rd array's value
 marks[2]=566;  //change value
 console.log('change array value',marks)
@@ -22,6 +22,7 @@ console.log(submarks);
 
 
 var sum=0;
+var i;
 for(i=0;i<marks.length;i++)
 {
     //console.log(marks[i])

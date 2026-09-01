@@ -4,7 +4,7 @@ const{test , expect}=require("@playwright/test");
 test('get name of first product',async ({browser})=>{
 const context=await browser.newContext();
 const page=await context.newPage();
-await page.goto("https://rahulshettyacademy.com/client");
+await page.goto("https://rahulshettyacademy.com/client",{timeout:30000});
 console.log('Page Title :',await page.title());
 const email="onkar11@test.com";//anshika@gmail.com
 const pass="Onkar1999";//Iamking@000
