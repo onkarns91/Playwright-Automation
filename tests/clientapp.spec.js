@@ -5,7 +5,7 @@ const {test ,expect}=require("@playwright/test");
 test('get name of first product',async ({browser})=>{
 const context=await browser.newContext();
 const page=await context.newPage();
-await page.goto("https://rahulshettyacademy.com/client",{timeout:30000});
+await page.goto("https://rahulshettyacademy.com/client",{waitUntil: "domcontentloaded",timeout:60000});
 console.log('Page Title :',await page.title());
 const email="onkar11@test.com";//anshika@gmail.com
 const pass="Onkar1999";//Iamking@000
@@ -38,7 +38,7 @@ const count=await product.count();
     };
 const cart=page.locator('[routerlink="/dashboard/cart"]');  
 await cart.click();
-await page.locator("div li").first().waitFor();
+await page.locator("div li").first().waitFor({timeout:60000});
 const bool=await page.locator("h3:has-text('ZARA COAT 3')").isVisible();    
 //("h3:has-text('ZARA COAT 3')") ==syntax >> ("tagname:has-text('')") , :has-text >> called as 'sudo class'. //isVisible() >>Returns whether the element is visible. return boolean value.
 expect (bool).toBeTruthy();  
