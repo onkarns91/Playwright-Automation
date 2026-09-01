@@ -21,7 +21,9 @@ test('popup validations',async ({page})=>
    //method to hovers over the element
    await page.locator("#mousehover").hover();
    await page.locator("div a[href='#top']").click();
-   const framesPage=page.frameLocator("#courses-iframe"); //When working with iframes, you can create a frame locator that will enter the iframe and allow selecting elements in that iframe.
+
+   //When working with iframes, you can create a frame locator that will enter the iframe and allow selecting elements in that iframe.
+   const framesPage=page.frameLocator("#courses-iframe"); 
    await framesPage.locator("li a[href='lifetime-access']:visible").click();
    const value=await framesPage.locator(".text h2").textContent();
    console.log(await value.split(" ")[1]);

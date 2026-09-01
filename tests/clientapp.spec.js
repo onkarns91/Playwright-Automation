@@ -1,6 +1,5 @@
-const {test ,
-expect}=require("@playwright/test");
-const { text } = require("node:stream/consumers");
+const {test ,expect}=require("@playwright/test");
+
 //TC_01 login with valid credentials and get name of first product>>
 
 test('get name of first product',async ({browser})=>{
