@@ -21,18 +21,18 @@ console.log(marks.includes(522)); //Determines whether an array includes a certa
 console.log(submarks); */
 
 
-var sum=0; var i;
+var sum1=0; var i;
 //approach 1
 for(i=0;i<marks.length;i++)
 {
     //console.log(marks[i])
-    sum=sum+marks[i]; 
+    sum1=sum1+marks[i]; 
 }
-console.log(sum);
+console.log(sum1);
 
 //approch 2 > using reduce 
-let total=marks.reduce((sum,mark)=>sum+mark,0); //reduce() : used when you want to combine all array values into one final value.
-console.log(total);
+let total1=marks.reduce((sum1,mark)=>sum1+mark,0); //reduce() : used when you want to combine all array values into one final value.
+console.log(total1);
 
 
 // create an array with even numbers of score array
@@ -74,7 +74,7 @@ console.log(fruits.sort());   //Sorts an array in place.
 console.log(fruits.reverse());  //Reverses the elements in an array in place. 
 
 //B. Numeric values
-let Num=[10,2,569,009,36];
+let Num=[10,2,569,9,36];
 //approach 1
 console.log(Num.sort(function(a,b){
    return (a-b)

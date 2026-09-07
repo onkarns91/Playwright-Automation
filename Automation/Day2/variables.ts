@@ -3,7 +3,7 @@
 /* In TypeScript (and JavaScript), `var`, `let`, and `const` are keywords used to declare variables, but they have different behaviors and scopes.
 Aspects of variables
 1. **Scope**:
-- Var - functionl Scoped
+- Var - functional Scoped
 - Let and Const - block scoped */
 
 function varscope(){
@@ -11,7 +11,7 @@ function varscope(){
         var x=10
         console.log("inside block varscope: ", x)
     }
-    console.log("out of block varscope: ", x) // x is accessible here because var is function scoped
+    console.log("out of block varscope: ", x) // x is accessible here because var is functional scoped
 }
 varscope() //calling the function 
 
