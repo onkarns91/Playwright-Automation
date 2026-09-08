@@ -57,7 +57,7 @@ console.log(eventhree);
 
 
 
-let fiveadd=scores.map(score=>score+10) //map : user whenyou want tochange/transform every item in an array.
+let fiveadd=scores.map(score=>score+10) //map : user when you want to change/transform every item in an array.
 console.log(fiveadd);
 
 
