@@ -71,7 +71,7 @@ class emp
 { 
     constructor(name ,role)
     {
-    this.name=name;  
+    this.name=name;  //if want to print once create :console.log(this.name=name);   
     this.role=role;
     }
 
@@ -81,9 +81,8 @@ class emp
     }
 }
 //create object of class
-const emp1=new emp(); 
-
 //approach 1
+const emp1=new emp();
 emp1.name="Mandar";   //add/update property data, syntax: object.property=value
 emp1.role='Manager';
 console.log('emp1 name :',emp1.name); 
