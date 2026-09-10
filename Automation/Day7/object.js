@@ -33,7 +33,7 @@ for(let key in person)  //using enhance for loop
 //complete object with nested object 
 const employee=
 {
-   name:"lissa",           //property:data/info
+   name:"lissa",     //properties-data/info
    role:"QA Engineer",    
    age:26,
    IsActive:true,  
@@ -52,7 +52,7 @@ const employee=
     "SQL"
    ],
 
-   NewEmp :function()  //methods
+   NewEmp :function()  //methods-action/behaviour
    {
     return(this.name+" is working as "+this.role)  //this : current object
    }
@@ -82,7 +82,7 @@ class emp
 }
 //create object of class
 //approach 1
-const emp1=new emp();
+const emp1=new emp();  //syntax: const objectName = new ClassName();
 emp1.name="Mandar";   //add/update property data, syntax: object.property=value
 emp1.role='Manager';
 console.log('emp1 name :',emp1.name); 
