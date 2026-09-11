@@ -16,9 +16,9 @@ class crickteam extends batch{
         this.id=id
     }
 
-    getbatch()
+    getbatch() //Overriding : same method but different behaviour
     {
-        console.log(`${this.name}, in Cricket Team and batch no :`,super.getbatch())
+        console.log(`${this.name}, in Cricket Team and batch no :`,super.getbatch()) //calling parent method
     }
 }
 class footballteam extends batch{
@@ -26,11 +26,10 @@ class footballteam extends batch{
     {
         super(name);
         this.id=id
-    }
-
-    getbatch()
+    }   
+    getbatch() //Overriding 
     {
-        console.log(`${this.name}, in Football Team and batch no :`,super.getbatch())
+        console.log(`${this.name}, in Football Team and batch no :`,super.getbatch())  
     }
 };
 
