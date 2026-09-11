@@ -22,13 +22,16 @@ class student extends batch{
 
     constructor(stdName,std,div)
     {
-        super(stdName);
+        super(stdName); //super  :to call parent constructor
         this.std=std;
         this.div=div;
     }
 
     divName()
+
+    
     {
+        super.boys();
         console.log(`${this.stdName},is in std :${this.std} and div :${this.div}`)
     }
 }
