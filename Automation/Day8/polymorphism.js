@@ -1,3 +1,5 @@
+// POLYMORPHISM :Same method, different behavior
+
 class batch {
     #batchNum=25;
     constructor(name)

@@ -1,4 +1,4 @@
-//Encapsulation :keeping data and methods together and controlling access to the data.
+//Encapsulation(Protect data) :keeping data and methods together and controlling access to the data.
 
 class bankaccount
 {

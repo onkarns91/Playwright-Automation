@@ -1,4 +1,4 @@
-//Inheritance : one class cand reuse data nad methods from another class
+//Inheritance(Reuse code) : one class cand reuse data nad methods from another class
 //syntax : class Child extends Parent {}
 
 class batch{
