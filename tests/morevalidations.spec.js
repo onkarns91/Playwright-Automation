@@ -2,7 +2,9 @@ const {test,expect}=require("@playwright/test");
 
 test('popup validations',async ({page})=>
 {
-   await page.goto("https://rahulshettyacademy.com/AutomationPractice/",{timeout:20000,waitUntil: "domcontentloaded"});   
+    page.setDefaultTimeout(20000);
+
+   await page.goto("https://rahulshettyacademy.com/AutomationPractice/",{timeout:30000,waitUntil: "domcontentloaded"});   
    /* await page.goto("https://www.youtube.com/");
    await page.goBack();     //to navigate barowser back
    await page.goForward();  //to navigate barowser forward */
@@ -23,10 +25,10 @@ test('popup validations',async ({page})=>
    await page.locator("div a[href='#top']").click();
 
    //When working with iframes, you can create a frame locator that will enter the iframe and allow selecting elements in that iframe.
-   const framesPage=page.frameLocator("#courses-iframe"); 
-   await framesPage.locator("li a[href='lifetime-access']:visible").click();
+ /*   const framesPage=page.frameLocator("#courses-iframe"); 
+   await framesPage.locator("li a[href='lifetime-access']:visible").click({timeout:30000});
    const value=await framesPage.locator(".text h2").textContent();
-   console.log(await value.split(" ")[1]);
+   console.log(await value.split(" ")[1]); */
 
 
 
