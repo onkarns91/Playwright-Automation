@@ -2,7 +2,7 @@ const {test,expect}=require("@playwright/test");
 
 test('popup validations',async ({page})=>
 {
-   await page.goto("https://rahulshettyacademy.com/AutomationPractice/",{timeout:20000});   
+   await page.goto("https://rahulshettyacademy.com/AutomationPractice/",{timeout:20000,waitUntil: "domcontentloaded"});   
    /* await page.goto("https://www.youtube.com/");
    await page.goBack();     //to navigate barowser back
    await page.goForward();  //to navigate barowser forward */
