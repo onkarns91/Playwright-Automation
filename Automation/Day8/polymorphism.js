@@ -47,7 +47,7 @@ console.log(std2.name);
 std2.getbatch();
 
 
-//method overloading 
+//method overloading :multiple methods have the same name but different parameters, and the program calls the correct one based on the arguments passed.
 
 //approach 1
 class Calculator {

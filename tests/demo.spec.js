@@ -44,7 +44,7 @@ allowing asynchronous operations to be handled in a sequential-looking way.*/
         await signin.click();
         const iphn=page.locator(".card-body a");
 
-        //when locators which extract multipme webelements in page use -- .nth() 
+        //when locators which extract multiple webelements in page use -- .nth() 
         console.log('first product name :', await iphn.first().textContent()); //.first() -to selects 1st product/web-element
         console.log('second product name :', await iphn.nth(1).textContent());  //.nth(1) -to selects specific product/web-element , here (1)= 2nd web-element.
 
