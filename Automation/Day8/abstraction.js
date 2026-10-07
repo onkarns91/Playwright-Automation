@@ -1,7 +1,10 @@
 //Abstraction = Hide HOW, Show WHAT (hide Complex implementation -> Show required functionality)
-
-class car
+module.exports = class car //Exporting class
 {
+    constructor(name)
+    {
+        this.name=name
+    }
     #fuelcheck()
     {
     console.log("checking fuel.")
@@ -19,5 +22,7 @@ class car
 
 };
 
-const strtcar=new car();
+/* const strtcar=new car();
 strtcar.start();
+ */
+
