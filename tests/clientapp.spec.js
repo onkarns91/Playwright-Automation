@@ -63,7 +63,7 @@ for(let i=0;i<optncount;++i)
     if(value===" India")
     {
         await dropdwn.locator("button").nth(i).click();
-        console.log('Selectes country :',value);
+        console.log('Selected country :',value);
         break;
     }
 }
