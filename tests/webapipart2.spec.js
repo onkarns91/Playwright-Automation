@@ -1,5 +1,5 @@
 const {test , expect}=require("@playwright/test");
-const { timeLog } = require("console");
+
 
 const email="onkar11@test.com";//anshika@gmail.com
 const pass="Onkar1999";//Iamking@000
@@ -26,7 +26,33 @@ test('get all product name',async()=>
     await page.goto("https://rahulshettyacademy.com/client"); 
     
     //TO GET ALL PRODUCTS NAMES  
-    await page.locator(".card-body b").last().waitFor({timeLog:5000});  // waitfor - to waituntil specific locator to load.
+    await page.locator(".card-body b").last().waitFor({timeout:5000});  // waitfor - to waituntil specific locator to load.
     console.log('All Products Name :',await page.locator(".card-body h5 b").allTextContents());
 
+})
+
+test('select product and make payment', async()=>
+{
+    const page=await webcontext.newPage();
+    await page.goto("https://rahulshettyacademy.com/client");
+    await page.locator(".card-body").filter({hasText:"ZARA COAT 3"}).getByRole("button",{name:"Add To Cart"}).click();
+    await page.getByRole("listitem").getByRole("button",{name :'Cart'}).click();
+
+    await page.locator("div li").first().waitFor();
+    await expect(page.getByText("ZARA COAT 3")).toBeVisible();
+    await page.getByRole("button",{name :'Checkout'}).click();
+
+
+    //Enter payment details and Place oder>>
+    const cvvInput=page.locator("input.input.txt").nth(1);
+    await cvvInput.fill("123");
+    const cardName=page.locator("input.input.txt").nth(2);
+    await cardName.fill("onkar sawant");
+
+
+    await page.getByPlaceholder("Select Country").pressSequentially("ind",{delay:150});
+
+    await page.getByRole("button",{name:' India'}).nth(1).click();
+    await page.getByText("Place Order ").click();
+    await expect(page.getByText(" Thankyou for the order. ")).toBeVisible();
 })
