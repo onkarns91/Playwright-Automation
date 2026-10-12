@@ -42,7 +42,7 @@ for(let i=0;i<rowcount;++i)
         break;
     }   
 }
-//TC_05 On order summary page verify orderdetails>>
+// On order summary page verify orderdetails>>
 await expect (page.locator("div .email-title")).toHaveText(" order summary ");
 
 const orderdtls=await page.locator("div .col-text").textContent();
