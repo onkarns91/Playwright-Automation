@@ -18,11 +18,6 @@ test('security test request intercept', async ({ page }) => {
     await Loginbtn.click();
 
     await page.getByRole("button", { name: 'ORDERS' }).click();
-
-
-
-
-    //intercept request,route >changes>push
     await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id*",     //"*" :to include all
         route => route.continue({ url: 'https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=6a7e11e221054ba465f8tc28' }))
     await page.locator("button:has-text('View')").first().click();

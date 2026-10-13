@@ -42,35 +42,4 @@ test('APT intercept response ', async ({ page }) => {
     await page.waitForResponse("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/6a7e11e221054ba465d0cc2f");
     //await page.pause();
     console.log(await page.locator(".mt-4").textContent());
-
-
-    /* const row=page.locator("tbody tr");
-    await row.first().waitFor();
-    const rowcount=await row.count();
-    const expectedId = response.odrId.replace(/\|/g, "").trim();
-    
-    for(let i=0;i<rowcount;++i)
-    {   const id=await row.nth(i).locator("th").textContent();
-        if(id.includes(expectedId))
-        {
-            console.log("MATCH FOUND! 🎯");
-            await row.nth(i).locator("td button.btn-primary").click();
-            break;
-        }   
-    } */
-    // On order summary page verify orderdetails>>
-    /* await expect (page.locator("div .email-title")).toHaveText(" order summary ");
-    
-    const orderdtls=await page.locator("div .col-text").textContent();
-    await expect (response.odrId.includes(orderdtls)).toBeTruthy();
-    const billid=await page.locator("div .text").nth(0);
-    const billcountry=await page.locator("div .text").nth(1);
-    const dilvid=await page.locator("div .text").nth(2);
-    const dilvcountry=await page.locator("div .text").nth(3);
-    
-    await expect (billid).toHaveText(email);
-    await expect(billcountry).toContainText("Bermuda");
-    await expect (dilvid).toHaveText(email);
-    await expect (dilvcountry).toContainText("Bermuda");
-    await expect(page.locator("div .title")).toHaveText(" ZARA COAT 3 "); */
 });
