@@ -39,7 +39,7 @@ const config=({    //create config(var)...1 //approach 2: export default defineC
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    //trace: 'on-first-retry',
+    //trace: 'on',//'on-first-retry',
     headless: !!process.env.CI, //1..to it only runs headless inside GitHub Actions //2..to invoked browser keep false
     
     actionTimeout: 10*1000,  //set action timeout @ global level
