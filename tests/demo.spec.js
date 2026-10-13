@@ -1,4 +1,4 @@
-const {test , expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
 /* test('browser context Playwright Test', async ({browser})=>   //'test' annotation
     {
@@ -88,29 +88,28 @@ allowing asynchronous operations to be handled in a sequential-looking way.*/
 });      */
 
 //TC_03 : handling child windows and tabs with playwright by switching browser context
-test('child window hndl', async ({browser})=>
-{
-    const context=await browser.newContext();
-    const page=await context.newPage();
+test('child window hndl', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
-    const documentLink=page.locator("[href*='documents-request']");
+    const documentLink = page.locator("[href*='documents-request']");
 
     //create array - to click and open link in new window>>
-    const [Newpage]=await Promise.all([               //when needs to run two Promises at a time(simultaneously).
+    const [Newpage] = await Promise.all([               //when needs to run two Promises at a time(simultaneously).
         context.waitForEvent('page'),                //waitForEvent - listen for any new page. types of 'wait' - pending,rejected,fulfilled.
         documentLink.click(),                       //new page is open
     ])
- 
-    console.log('New page title :',await Newpage.title());
-    const domain=await Newpage.locator(".im-para.red strong").textContent();
+
+    console.log('New page title :', await Newpage.title());
+    const domain = await Newpage.locator(".im-para.red strong").textContent();
 
     //split content ,get userid(mailId)>>
-    const arraytext=await domain.split("@"); 
+    const arraytext = await domain.split("@");
     //arraytext[1].split("m").[];
-    const mailId=arraytext[1];
-    console.log('mail id :',mailId);
+    const mailId = arraytext[1];
+    console.log('mail id :', mailId);
 
     //fill userid on parent window page
     await page.locator("#username").fill(mailId);
-     console.log('username entered :',await page.locator("#username").inputValue());  //inputvalue - to get input value in field 
+    console.log('username entered :', await page.locator("#username").inputValue());  //inputvalue - to get input value in field 
 });    
