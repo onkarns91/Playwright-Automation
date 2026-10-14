@@ -1,8 +1,8 @@
 const { expect } = require('@playwright/test');
-const { customtest} = require("./Utils/CustomFixture");
+const { customtest } = require("./Utils/Fixtures");
 
 
-customtest('custom fixture demo', async ({ authenticatedpage,CreateOrder}) => {
+customtest('custom fixture demo', async ({ authenticatedpage, CreateOrder,TestData }) => {
 
     //for login using 'authenticatedpage' fixutre. 
     await authenticatedpage.goto("https://rahulshettyacademy.com/client");
@@ -11,5 +11,6 @@ customtest('custom fixture demo', async ({ authenticatedpage,CreateOrder}) => {
     const orderbtn = authenticatedpage.locator("li [routerlink*='myorders']");
     await orderbtn.click();
     await expect(authenticatedpage.getByText(CreateOrder.odrId)).toBeVisible();
+    console.log('prodctName :',TestData.prodctName); //data driven
 
 });
