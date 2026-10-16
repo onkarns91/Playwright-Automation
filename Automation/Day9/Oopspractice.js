@@ -153,3 +153,9 @@ const PersonalCareProduct1=new PersonalCareProduct(1290,'S26',9000,12)
 console.log(PersonalCareProduct1.totalprice(2))
 const PersonalCareProduct2=new PersonalCareProduct(1, 'Shampoo', 100, 2)
 console.log(PersonalCareProduct2.totalprice(3))
+
+
+
+
+
+

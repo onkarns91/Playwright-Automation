@@ -42,3 +42,29 @@ while(values!==-1)
    values=newtext.indexOf("day",values +1)
 }
 console.log(count)
+
+
+//1 Remove Duplicate Characters from String
+let string='programming';
+let arr=string.split('');
+console.log(arr);
+let uniques=new Set(arr);
+console.log(uniques);
+
+let array=[...uniques]; //convert string into array ,using spread operator
+console.log(array)
+
+let uniquevalue=array.join('')
+console.log(uniquevalue)
+
+//2
+let string='proggrramming'
+console.log(`\nbefore remove duplicate char : ${string}`);
+let split=string.split('');
+console.log(`\nsplit: ${split}`);
+let set=new Set(split);
+console.log("\nSet char : ",set);
+let arr=[...set];
+console.log(`\nconverted string into array : ${arr}`);
+let finl=arr.join('')
+console.log(`\nafter remove duplicate char : ${finl}`);
