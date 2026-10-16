@@ -1,3 +1,5 @@
+//Assignment 2 — Event ID & Booking ID:Task: Get the event ID from the API, create a booking, and store the booking ID.
+
 const { expect } = require('@playwright/test');
 const base = require('@playwright/test');
 
@@ -40,6 +42,7 @@ const authenticatedPage = base.test.extend({
 
     },
     createEvent: async ({ playwright, testData }, use) => {
+        let response1 = {}
         const { email, password } = testData.users;
         const { ApiBase_Url } = testData;
         const apicontext = await playwright.request.newContext();
@@ -55,7 +58,7 @@ const authenticatedPage = base.test.extend({
         const responsejson = await response.json()
         const token = await responsejson.token;
         expect(token).toBeTruthy();
-
+        response1.token = token;
         // Step 2: Create event
         const createRes = await apicontext.post(`${ApiBase_Url}/events`,
             {
@@ -69,7 +72,8 @@ const authenticatedPage = base.test.extend({
         const body = await createRes.json();
         console.log("Create event response:", body)
         const eventId = await body.data.id;
-        await use(eventId); // Step 3: Pass event ID to the test
+        response1.eventId = eventId;
+        await use(response1); // Step 3: Pass event ID and token to the test
         const deleteResponse = await apicontext.delete(`${ApiBase_Url}/events/${eventId}`,
             { headers: { Authorization: `Bearer ${token}` } });
 
@@ -85,5 +89,7 @@ const authenticatedPage = base.test.extend({
 authenticatedPage('Build a Two-Fixture Test', async ({ login, createEvent }) => {
 
     await login.locator('a[href="/events"]').first().click();
-    console.log("Created Event ID:",createEvent)
+    console.log("\nCreated Event ID:", createEvent.eventId);
+    console.log("\nCreated Event token:", createEvent.token);
+
 });
