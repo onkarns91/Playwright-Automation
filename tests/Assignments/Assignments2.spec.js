@@ -25,7 +25,7 @@
 
 //Assignment 8 — Reusable Booking Method ,Task: create createBooking(eventID, user) method
 
-const { test, request, expect } = require('@playwright/test');
+/* const { test, request, expect } = require('@playwright/test');
 
 
 class booking {
@@ -117,4 +117,33 @@ test('', async () => {
 
     
 });
+ */
 
+//Assignment 9 — User-specific UI Login ,Task: create UIlogin(page, user) method for Playwright UI login .
+
+class UI{   
+     user = {
+            Yahoo: { email: "om@yahoo.com", password: "Omkar@1999"},
+            Gmail: { email: "om@Gmail.com", password: "Omkar@1999"},
+        };
+    async UIlogin(page, user)
+    {
+       await page.goto('https://eventhub.rahulshettyacademy.com/login');
+       await page.getByPlaceholder("you@email.com").fill(user.email);
+       await page.locator("input#password").fill(user.password);
+       await page.getByRole('button',{name:'Sign In'}).click();
+       console.log ('user logged-in successfully.')
+    }
+
+};
+
+const{test,expect}=require('@playwright/test');
+
+test('UI method',async({browser})=>{
+    const context=await browser.newContext();
+    const page=await context.newPage();
+    const ui=new UI();
+    await ui.UIlogin(page,ui.user.Gmail);
+    await expect(page.getByRole('link',{name:'Browse Events →'})).toBeVisible();
+
+})
