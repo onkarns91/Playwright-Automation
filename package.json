@@ -1,9 +1,30 @@
 {
   "name": "playwright",
   "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/onkarns91/Playwright-Automation#readme",
+  "bugs": {
+    "url": "https://github.com/onkarns91/Playwright-Automation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onkarns91/Playwright-Automation.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "test": "playwright test",
     "test:headed": "npx playwright test"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1",
+    "playwright-core": "^1.62.1",
+    "undici-types": "^8.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.x.x",
