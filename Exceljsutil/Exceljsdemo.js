@@ -20,7 +20,7 @@ async function Readfile(worksheet, oldvalule) {
 
 
 
-async function WriteExcel(oldvalule, newvalue, Path) {
+async function WriteExcel(oldvalule, newvalue,change, Path) {
 
 
     const workbook = new Exceljs.Workbook();
@@ -29,11 +29,11 @@ async function WriteExcel(oldvalule, newvalue, Path) {
     const output = await Readfile(worksheet, oldvalule);
 
 
-    let cell = worksheet.getCell(output.row, output.column);  //getCell :Get or create cell getCell(rowNumber,ColNumber)
+    let cell = worksheet.getCell(output.row, output.column+change.colChange);  //getCell :Get or create cell getCell(rowNumber,ColNumber)
     cell.value = newvalue //.value :Value of the cell
     console.log('cell value has been change/update.')
     console.log('new valule :', cell.value)
     await workbook.xlsx.writeFile(Path) //writeFile :write/update to a file
 
 }
-WriteExcel('shreeram', 'omkar', "C:/Users/Reva Sawant/Downloads/download21.xlsx");
+WriteExcel('omkar', 456,{rowChange:0,colChange:2}, "C:/Users/Reva Sawant/Downloads/download21.xlsx");
