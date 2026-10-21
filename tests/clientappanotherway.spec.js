@@ -17,7 +17,7 @@ test('get name of first product', async ({ browser }) => {
 
     //TO GET ALL PRODUCTS NAMES  
     await page.locator("div.card-body h5").last().waitFor();  // waitfor - to waituntil specific locator to load.
-    console.log('All Products Name :', await page.locator("div.card-body h5").allTextContents());
+    console.log('All Products_Names :', await page.locator("div.card-body h5").allTextContents());
 
     //TC_02 select and add to cart one product>>
 

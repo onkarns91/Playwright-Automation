@@ -25,7 +25,7 @@ test('get all product name', async () => {
 
     //TO GET ALL PRODUCTS NAMES  
     await page.locator(".card-body b").last().waitFor({ timeout: 5000 });  // waitfor - to waituntil specific locator to load.
-    console.log('All Products Name :', await page.locator(".card-body h5 b").allTextContents());
+    console.log('All Products_Name :', await page.locator(".card-body h5 b").allTextContents());
 
 })
 
