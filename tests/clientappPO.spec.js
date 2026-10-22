@@ -1,8 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { LoginPage } = require('../PageObjects/LoginPage');
-const { DashboradPage } = require('../PageObjects/DashboradPage');
-const { PaymentPage } = require('../PageObjects/PaymentPage');
-const { OrdersPage } = require('../PageObjects/OrdersPage');
+const { POManager } = require('../PageObjects/POManager');
 
 
 test('login js > dashboard js', async ({ browser }) => {
@@ -10,7 +7,8 @@ test('login js > dashboard js', async ({ browser }) => {
     const UserPass = "Onkar1999";//Iamking@000
     const context = await browser.newContext();
     const page = await context.newPage();
-    const loginpage = new LoginPage(page);
+    const poManager = new POManager(page);
+    const loginpage = poManager.getLoginPage()
     await loginpage.validLogin(UserEmail,UserPass);
 
 
@@ -25,14 +23,14 @@ test('login js > dashboard js', async ({ browser }) => {
     const productName = "ZARA COAT 3"; 
     const bool = await page.locator("h5:has-text('ZARA COAT 3')").isVisible();
     await expect(bool).toBeTruthy();
-    const dashboradpage = new DashboradPage(page);
+    const dashboradpage = poManager.getDashboradPage()
     await dashboradpage.AddToCart(productName);
 
     //Enter payment details and Place oder>>
     const Cvv = '123'
     const CardName = "onkar sawant"; 
     const countryName = "ind"
-    const payment = new PaymentPage(page);
+    const payment = poManager.getPaymentPage();
     await payment.paymentDetails(Cvv,CardName,countryName);
     await expect(page.locator("label[type='text']")).toHaveText(UserEmail);
 
@@ -43,7 +41,7 @@ test('login js > dashboard js', async ({ browser }) => {
     const ordrId =await  page.locator("tbody label").nth(1).textContent();
     console.log(ordrId);
     const expectedId = ordrId.replace(/\|/g, "").trim();
-    const order = new OrdersPage(page);
+    const order = poManager.getOrdersPage();
     await order.ViewOrder(expectedId);
     
 
