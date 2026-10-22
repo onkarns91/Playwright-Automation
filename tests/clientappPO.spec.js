@@ -8,6 +8,7 @@ test('login js > dashboard js', async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
     const poManager = new POManager(page);
+
     const loginpage = poManager.getLoginPage()
     await loginpage.validLogin(UserEmail,UserPass);
 
@@ -29,9 +30,9 @@ test('login js > dashboard js', async ({ browser }) => {
     //Enter payment details and Place oder>>
     const Cvv = '123'
     const CardName = "onkar sawant"; 
-    const countryName = "ind"
+    const country = "ind"
     const payment = poManager.getPaymentPage();
-    await payment.paymentDetails(Cvv,CardName,countryName);
+    await payment.paymentDetails(Cvv,CardName,country,' India');
     await expect(page.locator("label[type='text']")).toHaveText(UserEmail);
 
    
@@ -41,6 +42,7 @@ test('login js > dashboard js', async ({ browser }) => {
     const ordrId =await  page.locator("tbody label").nth(1).textContent();
     console.log(ordrId);
     const expectedId = ordrId.replace(/\|/g, "").trim();
+    
     const order = poManager.getOrdersPage();
     await order.ViewOrder(expectedId);
     

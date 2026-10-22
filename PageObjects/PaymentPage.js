@@ -7,16 +7,16 @@ class PaymentPage {
         this.country = this.page.locator('div [placeholder*="Country"]');
         this.dropdwn = this.page.locator(".ta-results");
     };
-       async paymentDetails(Cvv,CardName,countryName)
+       async paymentDetails(Cvv,CardName,country,countryName)
     {
         await this.cvvInput.fill(Cvv);
         await this.CardName.fill(CardName);
-        await this.country.pressSequentially(countryName,{delay :150})
+        await this.country.pressSequentially(country,{delay :150})
         await this.dropdwn.waitFor();
         const optncount = await this.dropdwn.locator("button").count();
             for (let i = 0; i < optncount; ++i) {
                 const value = await this.dropdwn.locator("button").nth(i).textContent();
-                if (value === " India") {
+                if (value === countryName) {
                     await this.dropdwn.locator("button").nth(i).click();
                     console.log('Selected country :', value);
                     break;
