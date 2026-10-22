@@ -1,5 +1,5 @@
-// POLYMORPHISM :Same method, different behavior
-
+// POLYMORPHISM :allows a single entity (such as a method or an object) to take on multiple forms.
+//method Overriding : same method but different behaviour
 class batch {
     #batchNum=25;
     constructor(name)
@@ -18,7 +18,7 @@ class crickteam extends batch{
         this.id=id
     }
 
-    getbatch() //Overriding : same method but different behaviour
+    getbatch() //Overriding 
     {
         console.log(`${this.name}, in Cricket Team and batch no :`,super.getbatch()) //calling parent method
     }
