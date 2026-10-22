@@ -2,6 +2,7 @@ const { test, expect } = require("@playwright/test");
 const { LoginPage } = require('../PageObjects/LoginPage');
 const { DashboradPage } = require('../PageObjects/DashboradPage');
 const { PaymentPage } = require('../PageObjects/PaymentPage');
+const { OrdersPage } = require('../PageObjects/OrdersPage');
 
 
 test('login js > dashboard js', async ({ browser }) => {
@@ -39,36 +40,16 @@ test('login js > dashboard js', async ({ browser }) => {
     //goto 'Your Orders' scan page find orderID and view order summary >>
     await expect(page.locator("h1.hero-primary")).toContainText(" Thankyou for the order. ");
     console.log(await page.locator('h1.hero-primary').textContent());
-    const odrId = await page.locator("tbody label").nth(1).textContent();
-    console.log(odrId);
+    console.log(ordrId);
+    const order = new OrdersPage(page);
+    await order.ViewOrder();
 
 
-
-    const orderbtn = page.locator("li [routerlink*='myorders']");
-    await orderbtn.click();
-
-
-    const row = page.locator("tbody tr");
-    await row.first().waitFor();
-    const rowcount = await row.count();
-    const expectedId = odrId.replace(/\|/g, "").trim();
-
-
-
-    for (let i = 0; i < rowcount; ++i) {
-        const id = await row.nth(i).locator("th").textContent();
-        if (id.includes(expectedId)) {
-            console.log("MATCH FOUND! 🎯");
-            await row.nth(i).locator("td button.btn-primary").click();
-            break;
-        }
-
-    }
     //TC_05 On order summary page verify orderdetails>>
     await expect(page.locator("div .email-title")).toHaveText(" order summary ");
 
     const orderdtls = await page.locator("div .col-text").textContent();
-    await expect(odrId.includes(orderdtls)).toBeTruthy();
+    await expect(ordrId.includes(orderdtls)).toBeTruthy();
     const billid = await page.locator("div .text").nth(0);
     const billcountry = await page.locator("div .text").nth(1);
     const dilvid = await page.locator("div .text").nth(2);
