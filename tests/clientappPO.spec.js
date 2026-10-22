@@ -40,10 +40,12 @@ test('login js > dashboard js', async ({ browser }) => {
     //goto 'Your Orders' scan page find orderID and view order summary >>
     await expect(page.locator("h1.hero-primary")).toContainText(" Thankyou for the order. ");
     console.log(await page.locator('h1.hero-primary').textContent());
+    const ordrId =await  page.locator("tbody label").nth(1).textContent();
     console.log(ordrId);
+    const expectedId = ordrId.replace(/\|/g, "").trim();
     const order = new OrdersPage(page);
-    await order.ViewOrder();
-
+    await order.ViewOrder(expectedId);
+    
 
     //TC_05 On order summary page verify orderdetails>>
     await expect(page.locator("div .email-title")).toHaveText(" order summary ");
