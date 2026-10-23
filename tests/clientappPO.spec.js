@@ -1,16 +1,15 @@
 const { test, expect } = require("@playwright/test");
 const { POManager } = require('../PageObjects/POManager');
-
+const testdata = JSON.parse(JSON.stringify(require('../Utils/ClientappTestData.json')));
 
 test('login js > dashboard js', async ({ browser }) => {
-    const UserEmail = "onkar11@test.com";//anshika@gmail.com
-    const UserPass = "Onkar1999";//Iamking@000
+
     const context = await browser.newContext();
     const page = await context.newPage();
     const poManager = new POManager(page);
 
     const loginpage = poManager.getLoginPage()
-    await loginpage.validLogin(UserEmail,UserPass);
+    await loginpage.validLogin(testdata.UserEmail,testdata.UserPass);
 
 
     const ProductName = page.locator("div.card-body h5").first();
@@ -20,20 +19,16 @@ test('login js > dashboard js', async ({ browser }) => {
     await page.locator("div.card-body h5").last().waitFor();  // waitfor - to waituntil specific locator to load.
     console.log('All Products_Name :', await page.locator("div.card-body h5").allTextContents());
 
-    //select and add to cart one product>>
-    const productName = "ZARA COAT 3"; 
+    //select and add to cart one product>> 
     const bool = await page.locator("h5:has-text('ZARA COAT 3')").isVisible();
     await expect(bool).toBeTruthy();
     const dashboradpage = poManager.getDashboradPage()
-    await dashboradpage.AddToCart(productName);
+    await dashboradpage.AddToCart(testdata.productName);
 
     //Enter payment details and Place oder>>
-    const Cvv = '123'
-    const CardName = "onkar sawant"; 
-    const country = "ind"
     const payment = poManager.getPaymentPage();
-    await payment.paymentDetails(Cvv,CardName,country,' India');
-    await expect(page.locator("label[type='text']")).toHaveText(UserEmail);
+    await payment.paymentDetails(testdata.Cvv,testdata.CardName,testdata.country,' India');
+    await expect(page.locator("label[type='text']")).toHaveText(testdata.UserEmail);
 
    
     //goto 'Your Orders' scan page find orderID and view order summary >>
@@ -57,9 +52,9 @@ test('login js > dashboard js', async ({ browser }) => {
     const dilvid = await page.locator("div .text").nth(2);
     const dilvcountry = await page.locator("div .text").nth(3);
 
-    await expect(billid).toHaveText(UserEmail);
+    await expect(billid).toHaveText(testdata.UserEmail);
     await expect(billcountry).toContainText("India");
-    await expect(dilvid).toHaveText(UserEmail);
+    await expect(dilvid).toHaveText(testdata.UserEmail);
     await expect(dilvcountry).toContainText("India");
     await expect(page.locator("div .title")).toHaveText(" ZARA COAT 3 ");
 
