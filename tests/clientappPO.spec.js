@@ -67,7 +67,7 @@ for(const data of testdata)
 
 
 //data driven by fixture
-customTest.only(`client App login for`, async ({ browser,testDataforOrder }) => {
+customTest(`client App login for`, async ({ browser,testDataforOrder }) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
