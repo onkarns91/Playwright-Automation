@@ -1,8 +1,19 @@
-{
+[{
     "UserEmail" : "onkar11@test.com",
     "UserPass" : "Onkar1999",
     "productName" :"ZARA COAT 3",
     "Cvv" : "123",
     "CardName" : "onkar sawant",
     "country" :"ind"
+},
+
+{
+    "UserEmail" : "shikas@gmail.com",
+    "UserPass" : "Iamking@000",
+    "productName" :"ADIDAS ORIGINAL",
+    "Cvv" : "123",
+    "CardName" : "shika sawant",
+    "country" :"ind"
 }
+
+]

@@ -2,14 +2,15 @@ const { test, expect } = require("@playwright/test");
 const { POManager } = require('../PageObjects/POManager');
 const testdata = JSON.parse(JSON.stringify(require('../Utils/ClientappTestData.json')));
 
-test('login js > dashboard js', async ({ browser }) => {
+for(const data of testdata)
+{test(`client App login for ${data.productName}`, async ({ browser }) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
     const poManager = new POManager(page);
 
     const loginpage = poManager.getLoginPage()
-    await loginpage.validLogin(testdata.UserEmail,testdata.UserPass);
+    await loginpage.validLogin(data.UserEmail,data.UserPass);
 
 
     const ProductName = page.locator("div.card-body h5").first();
@@ -23,12 +24,12 @@ test('login js > dashboard js', async ({ browser }) => {
     const bool = await page.locator("h5:has-text('ZARA COAT 3')").isVisible();
     await expect(bool).toBeTruthy();
     const dashboradpage = poManager.getDashboradPage()
-    await dashboradpage.AddToCart(testdata.productName);
+    await dashboradpage.AddToCart(data.productName);
 
     //Enter payment details and Place oder>>
     const payment = poManager.getPaymentPage();
-    await payment.paymentDetails(testdata.Cvv,testdata.CardName,testdata.country,' India');
-    await expect(page.locator("label[type='text']")).toHaveText(testdata.UserEmail);
+    await payment.paymentDetails(data.Cvv,data.CardName,data.country,' India');
+    await expect(page.locator("label[type='text']")).toHaveText(data.UserEmail);
 
    
     //goto 'Your Orders' scan page find orderID and view order summary >>
@@ -52,10 +53,10 @@ test('login js > dashboard js', async ({ browser }) => {
     const dilvid = await page.locator("div .text").nth(2);
     const dilvcountry = await page.locator("div .text").nth(3);
 
-    await expect(billid).toHaveText(testdata.UserEmail);
+    await expect(billid).toHaveText(data.UserEmail);
     await expect(billcountry).toContainText("India");
-    await expect(dilvid).toHaveText(testdata.UserEmail);
+    await expect(dilvid).toHaveText(data.UserEmail);
     await expect(dilvcountry).toContainText("India");
-    await expect(page.locator("div .title")).toHaveText(" ZARA COAT 3 ");
+    await expect(page.locator("div .title")).toHaveText(data.productName);
 
-});
+});}
