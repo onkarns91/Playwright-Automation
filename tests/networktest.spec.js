@@ -1,5 +1,5 @@
 const { test, expect, request } = require("@playwright/test");  //request :Exposes API that can be used for the Web API testing.
-const { APiutils } = require('./Utils/APiutils');
+const { APiutils } = require('../Utils/APiutils');
 
 const loginpayload = { userEmail: "onkar11@test.com", userPassword: "Onkar1999" };
 const orderpayload = { orders: [{ country: "Bermuda", productOrderedId: "6960eac0c941646b7a8b3e68" }] };

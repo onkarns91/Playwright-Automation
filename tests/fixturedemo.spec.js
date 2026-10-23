@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { customtest } = require("./Utils/Fixtures");
+const { customtest } = require("../Utils/Fixtures");
 
 
 customtest('custom fixture demo', async ({ authenticatedpage, CreateOrder,TestData }) => {
