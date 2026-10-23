@@ -53,18 +53,31 @@ console.log(uniques);
 let array=[...uniques]; //convert string into array ,using spread operator
 console.log(array)
 let uniquevalue=array.join('')
-console.log(uniquevalue)
+console.log(uniquevalue) 
 
 
 //2
+//approach 1 :using Set method
 let string='proggrramming'
-console.log(`\nbefore remove duplicate char : ${string}`);
-let split1=string.split('');
-console.log(`\nsplit: ${split1}`);
-let set=new Set(split1);
-console.log("\nSet char : ",set);
-let arr=[...set];
-console.log(`\nconverted string into array : ${arr}`);
-let finl=arr.join('')
-console.log(`\nafter remove duplicate char : ${finl}`);
+// console.log(`\nbefore remove duplicate char : ${string}`);
+// let split1=string.split('');
+// console.log(`\nsplit: ${split1}`);
+// let set=new Set(split1);
+// console.log("\nSet char : ",set);
+// let arr=[...set];
+// console.log(`\nconverted string into array : ${arr}`);
+// let finl=arr.join('')
+// console.log(`\nafter remove duplicate char : ${finl}`);
 
+
+//approach 2 : without using Set method
+
+let result="";
+
+for(i=0;i<string.length;i++)
+{
+   if(result.indexOf(string[i])===-1)
+   {
+      result=result+string[i];
+   }
+} console.log(result)
