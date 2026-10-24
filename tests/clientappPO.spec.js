@@ -3,7 +3,8 @@ const { POManager } = require('../PageObjects/POManager');
 const testdata = JSON.parse(JSON.stringify(require('../Utils/ClientappTestData.json')));
 const { customTest } = require('../Utils/test-base');
 
-
+test.describe.configure({mode:'parallel'}); // to run all tests within file parallely.
+//test.describe.configure({mode:'serial'}); // to run all tests within file sequentially.
 //data driven by importing from extrnal json file and run test for multiple login
 for(const data of testdata) 
 {test(`client App login for ${data.productName}`, async ({ browser }) => {
