@@ -1,3 +1,4 @@
+/// <reference types="node" />
 const config= {
 
 
@@ -34,10 +35,11 @@ const config= {
   testDir: './tests/',
     retries : 1,
     workers : 3,
+    reporter: 'html',
 
 
 
 
 
 }
-module.exports = config
+module.exports=config
