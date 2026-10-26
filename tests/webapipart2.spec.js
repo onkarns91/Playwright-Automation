@@ -19,7 +19,7 @@ test.beforeAll(async ({ browser }) => {
 });
 
 
-test('get all product name', async () => {
+test('@API get all product name', async () => {
     const page = await webcontext.newPage();
     await page.goto("https://rahulshettyacademy.com/client");
 
@@ -29,7 +29,7 @@ test('get all product name', async () => {
 
 })
 
-test('select product and make payment', async () => {
+test('@API select product and make payment', async () => {
     const page = await webcontext.newPage();
     await page.goto("https://rahulshettyacademy.com/client");
     await page.locator(".card-body").filter({ hasText: "ZARA COAT 3" }).getByRole("button", { name: "Add To Cart" }).click();
