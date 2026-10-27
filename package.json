@@ -17,12 +17,12 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {   
+  "scripts": {
     "test": "playwright test",
     "test:headed": "npx playwright test",
-    "apiTest" : "npx playwright test --grep @API ",
-    "webTest" : "npx playwright test --grep @web ",
-    "regression" : "npx playwright test"
+    "apiTest": "npx playwright test --grep @API ",
+    "webTest": "npx playwright test --grep @web ",
+    "regression": "npx playwright test"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
