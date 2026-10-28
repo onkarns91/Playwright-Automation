@@ -1,4 +1,4 @@
-
+/* 
 var marks=Array(6);
 // var marks=Array(10,20,30,40,50,60); //aprroach 1
 
@@ -82,4 +82,33 @@ console.log(Num.sort(function(a,b){
 //approach 2
 console.log(Num.sort((a,b)=>(a-b))); //a-b :for Ascending order
 
-console.log(Num.sort((a,b)=>(b-a))); //b-a :for descending order
+console.log(Num.sort((a,b)=>(b-a))); //b-a :for descending order */
+
+
+
+let testResults = [
+    { testName: "Login", status: "PASS", duration: 2 },
+    { testName: "Search", status: "FAIL", duration: 5 },
+    { testName: "Checkout", status: "PASS", duration: 3 },
+    { testName: "Logout", status: "FAIL", duration: 4 }
+];
+
+let passTest = testResults.filter(test =>test.status==="PASS")
+console.log(passTest)
+let testNames = testResults.map(test=>test.testName)
+console.log(testNames)
+let totalDuration = testResults.reduce((total,test)=>total+test.duration,0)
+console.log(totalDuration)
+
+let passTestDuration = passTest.reduce((total,test)=>total+test.duration,0)
+console.log(passTestDuration)
+
+
+let failTest = testResults.filter(test =>test.status==="FAIL")
+console.log(failTest)
+
+let failTests = failTest.map(test=>test.testName)
+console.log(failTests)
+
+let failtestdur = testResults.filter(test1=>test1.status==="FAIL").reduce((total,test1)=>total+test1.duration,0)
+console.log(failtestdur)
