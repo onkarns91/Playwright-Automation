@@ -16,7 +16,18 @@ test('login with valid credentials', async ({ page }) => {
     await expect(page).toHaveURL(/dashboard/);
 });
 
-test.only('forget Password', async ({ page }) => {
+test('login with Invalid credentials', async ({ page }) => {
+
+    const login = new LoginPage(page);
+    await login.navigateToPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    const validation = await login.InvalidLogin(user.Username,'dummy')
+    expect(validation).toBeTruthy();
+
+});
+
+
+
+test('forget Password', async ({ page }) => {
     const login = new LoginPage(page);
     await login.navigateToPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
     await login.forgetPassjourney('dummy');
