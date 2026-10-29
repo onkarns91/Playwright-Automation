@@ -9,8 +9,8 @@ export class BasePage {
 
         await this.page.goto(url,{waitUntil: 'domcontentloaded',timeout :30000});
     }
-    async enterText(locator: Locator, text: any) {
-        await locator.fill(text)
+    async enterText(locator: Locator, text: string){
+        await locator.fill(text);
     }
 
     async clickElement(locator: Locator) {
