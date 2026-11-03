@@ -11,7 +11,7 @@ test('browser abort-network calls', async ({ browser }) =>   //'test' -annotatio
 
     page.route('**/*.{css,jpg}', route => route.abort()); //Aborts the route's request.
     page.on('request', request => console.log(request.url()));   //to print all requests URL
-    page.on('response', response => console.log(response.url(), response.status())); //to print all requests URL with status
+    page.on('response', response => console.log(response.url(), response.status())); //to print all response URL with status
 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     await username.fill("rahulshettyacademy");

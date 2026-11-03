@@ -3,7 +3,7 @@ const Exceljs = require('exceljs');
 
 //create seperate function Readfile
 async function Readfile(worksheet, oldvalule) {
-    let output = { row: -1, column: -1 }; //create object for roe/column number for generic.
+    let output = { row: -1, column: -1 }; //create object for row/column number for generic.
     worksheet.eachRow((row, rowNumber) => {
         row.eachCell((cell, colNumber) => {
             if (cell.value === oldvalule) {
