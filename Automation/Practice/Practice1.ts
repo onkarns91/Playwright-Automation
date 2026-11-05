@@ -58,17 +58,24 @@ for(let i=0;i<newarr.length;i++){
 
 //approach 2
 let set =new Set(newarr)
-console.log('set',[...set])
+console.log('set',[...set]) 
 
 //5 Count occurrences of each character
-var char :string[] = ['y','w','e','w','e','w','y','u','t','u','w']
+var char: string[] = ['y', 'w', 'e', 'w', 'e', 'w', 'y', 'u', 't', 'u', 'w']
 
-var count:number=0
+for (let i = 0; i < char.length; i++) {
+    let count = 0;
+    if (char.indexOf(char[i]) == i) {
 
-for(let i=0;i<=char.length;i++){
-    if(char.indexOf(char[i])==-1){
-        count++
-        
+        for (let j = 0; j < char.length; j++) {
+            if (char[i] == char[j]) {
+                count++;
+            }
+        }
+
+        console.log(char[i], count);
     }
-    console.log(count)
+
 }
+
+
